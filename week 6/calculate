@@ -1,0 +1,96 @@
+import sys
+
+def MainMenu():
+    print("-------------------------")
+    print("Press Enter")
+    print("Q = Exit")
+    print("C = Calculate")
+    inp = input("Select: ")
+    
+    if inp.lower() == "q":
+        print("Goodbye!")
+        sys.exit()  # Exit program
+    elif inp.lower() == "c":
+        Calculate()
+    else:
+        MainMenu()
+
+def Calculate():
+    print("\n--- Calculator Mode ---")
+    print("+ = Plus (Add multiple numbers)")
+    print("- = Minus (A - B)")
+    print("* = Multiply (Multiply multiple numbers)")
+    print("/ = Divide (A / B)")
+    print("^ = Power (A ^ B)")
+    print("M = Main/Home")
+    
+    inp = input("Select Operator: ")
+
+    # --- Addition (+) ---
+    if inp == "+":
+        try:
+            N = int(input("How many numbers to add? : "))
+            total = 0
+            for x in range(N):
+                total += float(input(f"Number {x+1} : "))  # float for decimals
+            print(f">>> Total Sum = {total}")
+        except ValueError:
+            print("Please enter numbers only!")
+        Calculate()
+
+    # --- Subtraction (-) ---
+    elif inp == "-":
+        try:
+            num1 = float(input("First number: "))
+            num2 = float(input("Subtract by: "))
+            print(f">>> Result = {num1 - num2}")
+        except ValueError:
+            print("Please enter numbers only!")
+        Calculate()
+
+    # --- Multiplication (*) ---
+    elif inp == "*":
+        try:
+            N = int(input("How many numbers to multiply? : "))
+            total = 1  # start at 1 for multiplication
+            for x in range(N):
+                total *= float(input(f"Number {x+1} : "))
+            print(f">>> Result = {total}")
+        except ValueError:
+            print("Please enter numbers only!")
+        Calculate()
+
+    # --- Division (/) ---
+    elif inp == "/":
+        try:
+            num1 = float(input("Dividend: "))
+            num2 = float(input("Divisor: "))
+            if num2 == 0:
+                print("Error: Cannot divide by zero!")
+            else:
+                print(f">>> Result = {num1 / num2}")
+        except ValueError:
+            print("Please enter numbers only!")
+        Calculate()
+        
+    # --- Power (^) ---
+    elif inp == "^":
+        try:
+            base = float(input("Base number: "))
+            power = float(input("Exponent: "))
+            print(f">>> Result = {base ** power}")  # Use ** for power
+        except ValueError:
+            print("Please enter numbers only!")
+        Calculate()
+
+    # --- Back to main menu ---
+    elif inp.lower() == "m":
+        MainMenu()
+    
+    # --- Invalid input ---
+    else:
+        print("Invalid Command.")
+        Calculate()
+
+# Start program
+MainMenu()
